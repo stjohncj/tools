@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-require 'pp'
 
 in_file = ARGV[0] or raise 'No input file provided!'
 
