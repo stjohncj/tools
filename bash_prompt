@@ -1,0 +1,32 @@
+function exitstatus {
+
+    EXITSTATUS="$?"
+    BOLD="\[\033[1m\]"
+    RED="\[\033[0;31m\]"
+    GREEN="\[\e[0;32m\]"
+    BLUE="\[\e[34m\]"
+    BROWN="\[\033[0;33m\]"
+    OFF="\[\033[m\]"
+
+    HOST="\h"
+    USER="\u"
+    DIR="\w"
+    NEWLINE="\n"
+    DATE="\d"
+    TIME="\t"
+
+    PROMPT_COLOR=$BROWN
+    PROMPT="\[\033]0;${USER}@${HOST}: \w\007\n${PROMPT_COLOR}${TIME} ${DATE} [${USER}@${HOST}:[${BLUE}\w${PROMPT_COLOR}]"
+
+    if [ "${EXITSTATUS}" -eq 0 ]
+    then
+        PS1="${PROMPT} [${GREEN}${EXITSTATUS}${PROMPT_COLOR}]${OFF}\n$ "
+    else
+        PS1="${PROMPT} [${RED}${EXITSTATUS}${PROMPT_COLOR}]${OFF}\n$ "
+    fi
+
+    PS2="${BOLD}>${OFF} "
+}
+
+PROMPT_COMMAND=exitstatus
+
