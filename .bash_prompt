@@ -16,17 +16,17 @@ function exitstatus {
     TIME="\t"
 
     PROMPT_COLOR=$BROWN
-    PROMPT="\[\033]0;${USER}@${HOST}: \w\007\n${PROMPT_COLOR}${TIME} ${DATE} [${USER}@${HOST}:[${BLUE}\w${PROMPT_COLOR}]"
+    STATUS_COLOR=$GREEN
 
-    if [ "${EXITSTATUS}" -eq 0 ]
+    if [ "${EXITSTATUS}" -ne 0 ]
     then
-        PS1="${PROMPT} [${GREEN}${EXITSTATUS}${PROMPT_COLOR}]${OFF}\n$ "
-    else
-        PS1="${PROMPT} [${RED}${EXITSTATUS}${PROMPT_COLOR}]${OFF}\n$ "
+        STATUS_COLOR=$RED
     fi
 
+    PROMPT="${PROMPT_COLOR}${TIME} ${DATE} [${BLUE}${USER}${PROMPT_COLOR}@${STATUS_COLOR}${HOST}${PROMPT_COLOR}:${BLUE}\w${PROMPT_COLOR}]"
+    PS1="${PROMPT} [${STATUS_COLOR}${EXITSTATUS}${PROMPT_COLOR}]${OFF}\n$ "
     PS2="${BOLD}>${OFF} "
+
 }
 
 PROMPT_COMMAND=exitstatus
-
