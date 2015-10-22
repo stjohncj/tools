@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+SLEEP_SECONDS=60
+
+/usr/local/bin/MouseTools -x 0 -y 0
+while true; do
+  /usr/local/bin/MouseTools -x 100 -y 100 -mouseSteps 100
+  sleep $SLEEP_SECONDS
+  /usr/local/bin/MouseTools -x 0 -y 0 -mouseSteps 1000
+  sleep $SLEEP_SECONDS
+done
