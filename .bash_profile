@@ -1,4 +1,4 @@
-source .bash_prompt
+source ~/.bash_prompt
 
 function hide_hidden_files(){
     defaults write com.apple.finder AppleShowAllFiles -bool NO
@@ -8,6 +8,9 @@ function show_hidden_files(){
     defaults write com.apple.finder AppleShowAllFiles -bool YES
     killall Finder
 }
+
+export NVM_DIR="$HOME/.nvm"
+  . "/usr/local/opt/nvm/nvm.sh"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
