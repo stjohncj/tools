@@ -1,4 +1,6 @@
-source ~/.bash_prompt
+source ~/.bash_cliprompt
+
+alias be='bundle exec'
 
 function hide_hidden_files(){
     defaults write com.apple.finder AppleShowAllFiles -bool NO
@@ -9,9 +11,15 @@ function show_hidden_files(){
     killall Finder
 }
 
+export S3DEV=s3://dealerinspire-prizm-assets-dev/
+export S3DEMO=s3://dealerinspire-prizm-assets-demo/
+export S3PROD=s3://dealerinspire-prizm-assets-prod/
+
 export NVM_DIR="$HOME/.nvm"
-  . "/usr/local/opt/nvm/nvm.sh"
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="$PATH:~/bin:$HOME/Library/Python/2.7/bin"
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+eval "$(rbenv init -)"
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+

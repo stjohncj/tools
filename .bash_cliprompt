@@ -23,10 +23,17 @@ function exitstatus {
         STATUS_COLOR=$RED
     fi
 
-    PROMPT="${PROMPT_COLOR}${TIME} ${DATE} [${BLUE}${USER}${PROMPT_COLOR}@${STATUS_COLOR}${HOST}${PROMPT_COLOR}:${BLUE}\w${PROMPT_COLOR}]"
+    GIT_BRANCH=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/' -e 's/^[ \t]*//')
+    if [ ! -z "${GIT_BRANCH}" ]
+    then
+        GIT_BRANCH="${PROMPT_COLOR}#${RED}${GIT_BRANCH}"
+    fi
+
+    PROMPT="${PROMPT_COLOR}${TIME} ${DATE} [${BLUE}${USER}${PROMPT_COLOR}@${STATUS_COLOR}${HOST}${PROMPT_COLOR}:${BLUE}\w${PROMPT_COLOR}${GIT_BRANCH}${PROMPT_COLOR}]"
     PS1="${PROMPT} [${STATUS_COLOR}${EXITSTATUS}${PROMPT_COLOR}]${OFF}\n$ "
     PS2="${BOLD}>${OFF} "
 
 }
 
 PROMPT_COMMAND=exitstatus
+
