@@ -11,7 +11,7 @@ function show_hidden_files(){
     killall Finder
 }
 
-eval "$(rbenv init -)"
+eval "$(rbenv init - zsh)"
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
